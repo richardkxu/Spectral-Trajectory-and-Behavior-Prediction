@@ -37,8 +37,8 @@ CUDA = True
 # CUDA = False
 DEVICE = 'cuda:0'
 # DEVICE = 'cuda:1'
-PREDALGO = 'Traphic'
-# PREDALGO = 'Social_Conv'
+# PREDALGO = 'Traphic'
+PREDALGO = 'Social_Conv'
 PRETRAINEPOCHS= 6
 TRAINEPOCHS= 20
 INPUT = 20
@@ -118,7 +118,6 @@ def create_data(input_dir, file_names, output_dir, dtype, threadid):
 		name_lst.append(out)
 	# merge_n_split(name_lst, output_dir)
 	merge(name_lst, output_dir, dtype, threadid)
-
 
 
 if __name__ == "__main__":
