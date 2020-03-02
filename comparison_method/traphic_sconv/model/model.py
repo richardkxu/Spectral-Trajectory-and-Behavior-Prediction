@@ -194,7 +194,9 @@ class TnpModel:
         d = os.path.join(self.args['modelLoc'], self.args['name'])
 
         if os.path.exists(d):
-            self.net.load_state_dict(torch.load(d))
+            # the original device is cuda:1, remap to cuda:0
+            ckpt = torch.load(d, map_location='cuda:0')
+            self.net.load_state_dict(ckpt)
             print("\n[INFO]: model {} loaded".format(d))
         else:
             print("\n[INFO]: can not find model at {} to evaluate, using existing net".format(d))

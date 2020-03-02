@@ -10,6 +10,8 @@ import pickle
 
 
 DATA = 'APOL'
+# DATA = 'ARGO'
+
 SUFIX = '1st'
 
 

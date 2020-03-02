@@ -284,9 +284,10 @@ class TrajPredEngine:
         print('evaluating on dataset{}...'.format(self.dsId))
         tester.run(test_loader)
 
-        if(self.args["train_loss"]) == "NLL" :
+        if(self.args["train_loss"]) == "NLL":
             nll_loss = self.lossVals / self.counts
             nll_loss[nll_loss != nll_loss] = 0
+            print("NLL:")
             print("Last Test loss: " + str(self.lastTestLoss.mean().item()))
             print("Avg Test loss: " + str(nll_loss.mean().item()))
         else:
@@ -296,6 +297,7 @@ class TrajPredEngine:
             # print(self.lastTestLoss)
             seq_loss = rmse.tolist()
             seq_loss = [x for x in seq_loss if x != 0]
+            print("RMSE:")
             print(rmse)
             print("Last Test loss: " + str(seq_loss[-1]))
             print("Avg Test loss: " + str(rmse.mean().item()))

@@ -1,0 +1,16 @@
+[INFO]: model ../../resources/trained_models/Social_Conv_ARGO_model_20-30l_26e.tar loaded
+loading data in 0...
+start testing Social_Conv...
+evaluating on dataset0...
+Epoch: [105137/105137] 100%|██████████, Avg train loss=0, Avg val loss=0 [10:06<00:00]
+RMSE:
+tensor([0.2769, 0.5026, 0.7038, 0.9102, 1.1211, 1.3348, 1.5502, 1.7664, 1.9831,
+        2.2002, 2.4175, 2.6347, 2.8518, 3.0688, 3.2855, 3.5019, 3.7181, 3.9335,
+        4.1485, 4.3627, 4.5763, 4.7894, 5.0017, 5.2132, 5.4242, 5.6337, 5.8429,
+        6.0519, 6.2605, 6.4687], device='cuda:0')
+Last Test loss: 6.468721866607666
+Avg Test loss: 3.3845043182373047
+using ARGO dataset.
+Loading time:1.3895230293273926
+Training time:1.1920928955078125e-06
+Testing time:609.5342199802399

@@ -1,0 +1,36 @@
+/home/richardkxu/anaconda3/envs/sc-glstm/bin/python /home/richardkxu/Documents/Spectral-Trajectory-and-Behavior-Prediction/comparison_method/traphic_sconv/main.py
+using LYFT dataset.
+highwayNet(
+  (ip_emb): Linear(in_features=2, out_features=32, bias=True)
+  (enc_lstm): LSTM(32, 64)
+  (dyn_emb): Linear(in_features=64, out_features=32, bias=True)
+  (soc_conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1))
+  (conv_3x1): Conv2d(64, 16, kernel_size=(3, 1), stride=(1, 1))
+  (soc_maxpool): MaxPool2d(kernel_size=(2, 1), stride=(2, 1), padding=(1, 0), dilation=1, ceil_mode=False)
+  (dec_lstm): LSTM(112, 128)
+  (op): Linear(in_features=128, out_features=5, bias=True)
+  (op_lat): Linear(in_features=112, out_features=3, bias=True)
+  (op_lon): Linear(in_features=112, out_features=2, bias=True)
+  (leaky_relu): LeakyReLU(negative_slope=0.1)
+  (relu): ReLU()
+  (softmax): Softmax(dim=1)
+)
+using cuda...
+
+
+[INFO]: model ../../resources/trained_models/Social_Conv_LYFT_model_20-30l_26e.tar loaded
+loading data in 0...
+start testing Social_Conv...
+evaluating on dataset0...
+Epoch: [6150/6150] 100%|██████████, Avg train loss=0, Avg val loss=0 [00:38<00:00]
+RMSE:
+tensor([ 0.7970,  1.3258,  1.8244,  2.3240,  2.8259,  3.3323,  3.8413,  4.3510,
+         4.8671,  5.3866,  5.9104,  6.4354,  6.9651,  7.4991,  8.0387,  8.5794,
+         9.1090,  9.6462, 10.1856, 10.7300, 11.2865, 11.8543, 12.4319, 13.0207,
+        13.6186, 14.2317, 14.8599, 15.4995, 16.1529, 16.8201], device='cuda:0')
+Last Test loss: 16.820058822631836
+Avg Test loss: 8.45833969116211
+using LYFT dataset.
+Loading time:1.4325289726257324
+Training time:1.6689300537109375e-06
+Testing time:38.66974949836731

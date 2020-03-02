@@ -97,10 +97,10 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
     encoder_stream1_optimizer = optim.RMSprop(encoder_stream1.parameters(), lr=learning_rate)
     decoder_stream1_optimizer = optim.RMSprop(decoder_stream1.parameters(), lr=learning_rate)
 
-#    encoder_stream1.load_state_dict(torch.load(encoder1loc))
-#    encoder_stream1.eval()       
-#    decoder_stream1.load_state_dict(torch.load(decoder1loc))        
-#    decoder_stream1.eval()
+    # encoder_stream1.load_state_dict(torch.load(encoder1loc))
+    # encoder_stream1.eval()
+    # decoder_stream1.load_state_dict(torch.load(decoder1loc))
+    # decoder_stream1.eval()
     if s2 is True:
         batch = load_batch ( 0 , BATCH_SIZE , 'pred' , train_raw , pred_raw , train2_raw , pred2_raw, train_eig_raw, pred_eig_raw )
         _ , _, batch = batch
