@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 from scipy.sparse.linalg import eigs
 from torch.autograd import Variable
 
-device = torch.device("cuda:0")
+device = torch.device("cuda:1")
 BATCH_SIZE=128
 MU = 5
 MODEL_LOC = '../resources/trained_models/Ours/{}'
@@ -73,8 +73,8 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
     decoder_stream1 = None
     encoder_stream2 = None
     decoder_stream2 = None
-    encoder1loc = os.path.join(MODEL_LOC.format(data), 'encoder_stream1_{}{}.pt'.format(data, 'singles1'))
-    decoder1loc = os.path.join(MODEL_LOC.format(data), 'decoder_stream1_{}{}.pt'.format(data, 'singles1'))
+    encoder1loc = os.path.join(MODEL_LOC.format(data), 'encoder_stream1_{}{}.pt'.format(data, sufix))
+    decoder1loc = os.path.join(MODEL_LOC.format(data), 'decoder_stream1_{}{}.pt'.format(data, sufix)) 
     
     train_raw = train_dataloader
     pred_raw = valid_dataloader
@@ -98,10 +98,12 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
     encoder_stream1_optimizer = optim.RMSprop(encoder_stream1.parameters(), lr=learning_rate)
     decoder_stream1_optimizer = optim.RMSprop(decoder_stream1.parameters(), lr=learning_rate)
 
-    # encoder_stream1.load_state_dict(torch.load(encoder1loc))
-    # encoder_stream1.eval()
-    # decoder_stream1.load_state_dict(torch.load(decoder1loc))
-    # decoder_stream1.eval()
+    # loading pre-trained weights, comment out if you want to train
+    print("loading {}...".format(encoder1loc))
+    encoder_stream1.load_state_dict(torch.load(encoder1loc))
+    encoder_stream1.eval()       
+    decoder_stream1.load_state_dict(torch.load(decoder1loc))        
+    decoder_stream1.eval()
 
     # stream2
     if s2 is True:
@@ -324,12 +326,12 @@ def compute_sample_loss(mu_1, mu_2,log_sigma_1, log_sigma_2, rho, y):
     pi_term = torch.Tensor([2*np.pi]).to(device)
 
     y_1 = y[:,0]
-    #y_1 = (y_1-torch.mean(y_1))/y_1.max()
+    y_1 = (y_1-torch.mean(y_1))/y_1.max()
     y_2 = y[:,1]
-    #y_2 = (y_2 - torch.mean(y_2))/y_2.max()
-    mu_1 = torch.mean(y_1) + (y_1 -torch.mean(mu_1))
+    y_2 = (y_2 - torch.mean(y_2))/y_2.max()
+    #mu_1 = torch.mean(y_1) + (y_1 -torch.mean(mu_1))
     #mu_1 = torch.mean(y_1) + (y_1 -torch.mean(mu_1)) * (torch.std(y_1))/(torch.std(mu_1))
-    mu_2 = torch.mean(y_2) + (y_2 -torch.mean(mu_2))
+    #mu_2 = torch.mean(y_2) + (y_2 -torch.mean(mu_2))
     #mu_2 = torch.mean(y_2) + (y_2 -torch.mean(mu_2)) * (torch.std(y_2))/(torch.std(mu_2))
     z = ( (y_1 - mu_1)**2/(log_sigma_1**2) + ((y_2 - mu_2)**2/(log_sigma_2**2)) - 2*rho*(y_1-mu_1)*(y_2-mu_2)/((log_sigma_1 *log_sigma_2)) )
     mog_lik2 = ( (-1*z)/(2*(1-rho**2)) ).exp()
@@ -344,7 +346,7 @@ def calculate_cluster_centers(agent_IDs, stream2_output, testbatch2):
     cluster_centers = np.zeros((num_batches, num_steps, 2))
     km = KMeans(init='k-means++', n_clusters=3)
     for t in range(num_steps):
-        for b in range(len(testbatch2)):
+        for b in range(len(testbatch2) - 1):
             clusters = km.fit(stream2_output[b, t, :].reshape(-1, 1))
             cluster_indcs = np.where(clusters.labels_ == clusters.labels_[agent_IDs[b]])[0]
             testbatch2_item = testbatch2[b]
@@ -454,7 +456,8 @@ def compute_accuracy_stream1(traindataloader, labeldataloader, encoder, decoder,
         mse = np.sqrt(mse)
         ade += mse
         fde += mse[-1]
-        count += testbatch_in_form.size()[0]
+        # count += testbatch_in_form.size()[0]
+        count +=1  
     
     ade = ade/count
     fde = fde/count
@@ -477,11 +480,11 @@ def MSE(y_pred, y_gt, device=device):
     muX = y_pred[:,:,0]
     muY = y_pred[:,:,1]
     x = np.array(y_gt[:,:, 0])
-    #x = (x-np.mean(x))/x.max()
+    x = (x-np.mean(x))/x.max()
     y = np.array(y_gt[:,:, 1])
-    muX = np.mean(x) + (x - np.mean(muX)) * (np.std(x))/(np.std(muX))
-    #y = (y-np.mean(y))/y.max()
-    muY = np.mean(y) + (x -np.mean(muY)) * (np.std(y))/(np.std(muY))
+    #muX = np.mean(x) + (x - np.mean(muX)) * (np.std(x))/(np.std(muX))
+    y = (y-np.mean(y))/y.max()
+    #muY = np.mean(y) + (x -np.mean(muY)) * (np.std(y))/(np.std(muY))
     acc = np.power(x-muX, 2) + np.power(y-muY, 2)
     lossVal = np.sum(acc, axis=0)/len(acc)
     return lossVal

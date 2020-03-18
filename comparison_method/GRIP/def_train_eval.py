@@ -15,11 +15,11 @@ from data_stream import *
 from scipy.sparse.linalg import eigs
 from torch.autograd import Variable
 
-device = torch.device("cuda:1")
+device = torch.device("cuda:0")
 # s1 = True
-BATCH_SIZE= 128
-train_seq_len = 20
-pred_seq_len = 20
+BATCH_SIZE= 16
+train_seq_len = 6
+pred_seq_len = 10
 FINAL_GRIP_OUTPUT_COORDINATE_SIZE = 256
 FINAL_GRIP_OUTPUT_COORDINATE_SIZE_DECODER = 256
 MODEL_LOC = '../../resources/trained_models/GRIP'
@@ -40,8 +40,8 @@ def load_grip_batch(index, data_raw, batchsize):
 
 def trainIters(n_epochs, train_dataloader, valid_dataloader, data, sufix, print_every=1, save_every=5, plot_every=1000, learning_rate=1e-3):
 
-    num_batches = int(len(train_dataloader)/BATCH_SIZE)
-    # num_batches = 1
+    # num_batches = int(len(train_dataloader)/BATCH_SIZE)
+    num_batches = 3
 
 
     train_raw = train_dataloader
@@ -91,7 +91,8 @@ def eval(epochs, train_dataloader, valid_dataloader, data, sufix, learning_rate=
 
     grip_batch_train = load_grip_batch(0, train_dataloader, BATCH_SIZE)
     grip_batch_val = load_grip_batch(0, valid_dataloader, BATCH_SIZE)
-    print(grip_batch_train.shape[2])
+    print(grip_batch_train.shape)
+    print(grip_batch_val.shape)
     grip_model = GRIPModel(grip_batch_train.shape[1], grip_batch_train.shape[3]).to(device)
     encoder_stream = Encoder ( FINAL_GRIP_OUTPUT_COORDINATE_SIZE , grip_batch_train.shape[2]).to ( device )
     decoder_stream = Decoder (FINAL_GRIP_OUTPUT_COORDINATE_SIZE_DECODER, grip_batch_val.shape[0], grip_batch_val.shape[2], grip_batch_val.shape[3]).to ( device )
@@ -174,8 +175,8 @@ def compute_accuracy_stream(train_dataloader, label_dataloader, grip_model, enco
             mse = np.sqrt(mse)
             ade += mse
             fde += mse[-1]
-        count += BATCH_SIZE
-        
+        # count += BATCH_SIZE
+        count += 1
     ade = ade/count
     fde = fde/count
     print("ADE: {} FDE: {}".format(ade, fde))
@@ -196,4 +197,5 @@ def MSE(y_pred, y_gt, device=device):
     # print(muX,x,muY,y)
     acc = np.power(x-muX, 2) + np.power(y-muY, 2)
     lossVal = np.sum(acc, axis=0)/len(acc)
+    # lossVal = np.sum(acc, axis=0)
     return lossVal

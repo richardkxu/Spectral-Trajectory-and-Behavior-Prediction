@@ -103,15 +103,15 @@ Agrim Gupta, Justin Johnson, Fei-Fei Li, Silvio Savarese, Alexandre Alahi.
 * [**GRIP: Graph-based Interaction-aware Trajectory Prediction**, ITSC'19](https://arxiv.org/pdf/1907.07792.pdf)<br>
 Xin Li, Xiaowen Ying, Mooi Choo Chuah 
 
-As the official implementation of the GRIP method is not available, the code provided here is our own effort to replicate the GRIP method to the best of our ability and does not necessarily convey the original implementation of the authors. Please contact the authors directly for the original implementation. 
+As the official implementation of the GRIP method was not available at the time creating this repo, the code provided here is our own effort to replicate the GRIP method to the best of our ability and does not necessarily convey the original implementation of the authors. 
 
-#### Pull Requests and Contributions
-Additionally, the graph construction part of GRIP may be slow as the code does not exploit optimized data structures and algorithms. If anyone uses the GRIP code and can come up with an optimized way to reduce computational time, please consider creating a pull request and we will acknoledge your contributions here ! :)
+The original GRIP implementation by the authors is provided [here](https://github.com/xincoder/GRIP). Please cite their paper if you use their method. 
+
 
 ### Datasets
-* [**Argoverse**](https://www.argoverse.org/data.html)
-* [**Apolloscape**](http://apolloscape.auto/trajectory.html)
-* [**Lyft Level 5**](https://level5.lyft.com/dataset/)
+* [**Argoverse**](https://www.argoverse.org/data.html) (input length: 20 & output length: 30)
+* [**Apolloscape**](http://apolloscape.auto/trajectory.html) (input length: 6 & output length: 10)
+* [**Lyft Level 5**](https://level5.lyft.com/dataset/) (input length: 20 & output length: 30)
 
 
 ### Resources folder structure

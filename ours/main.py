@@ -13,14 +13,11 @@ DATA = 'APOL'
 # DATA = 'LYFT'
 # DATA = 'ARGO'
 
-SUFIX = '1st'
-
-
 device = torch.device("cuda:0")
-#s2 = False
+SUFIX = '1stS1new'
+
 s2 = True
 TRAIN = True
-#TRAIN = False
 EVAL = True
 
 
@@ -28,7 +25,6 @@ DIR = '../resources/data/{}/'.format(DATA)
 MODEL_DIR = '../resources/trained_models/'
 
 epochs = 15
-
 save_per_epochs = 5
 
 train_seq_len = 6

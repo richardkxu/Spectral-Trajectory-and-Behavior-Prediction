@@ -52,7 +52,7 @@ def download_legacy(id, destination):
 
 if __name__ == "__main__":
     if(not os.path.isdir("resources")):
-        file_id = '1QT7iKrcYLqV9PghURj0zmHs7KXs-0F16'
+        file_id = '1RKcJf6oD3qoVBmZLtIXuLFdAtRKcJDCc'
         destination = 'resources.tar'	
         download_file_from_google_drive(file_id, destination)
         subprocess.call(["tar", "-xvf", "resources.tar"])

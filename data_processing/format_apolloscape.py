@@ -18,8 +18,8 @@ def save_to_file(data,files_path_to_sv):
     :param files_path_to_sv: file path where this .npy file will be saved
     :return: None
     '''
-    np.save(files_path_to_sv, data)
-
+    np.save(files_path_to_sv, data, allow_pickle=True)
+    
 def load_data(files_path_saved):
     '''
     to load the numpy array from .npy file
@@ -92,101 +92,106 @@ def save_to_text(final, to_save_txt, index):
             # filehandle.write('%d \t %d \t %f \t %f \t %f \n' %(l[0], l[1], l[2], l[3], l[4]))
             filehandle.write("{},{},{},{},{}\n".format(ind,l[1],l[0],l[2],l[3]))
 
-def apolloscape_to_formatted_test(dir, train_dir):
+
+def generate_data(file, data_type):
+
     '''
     to create the formatted data from the apolloscape data
-    :param dir: directory of the apolloscape dataset
-    :return: None. Created formatted .txt files
+    :param file: file in which the unformatted data is present
+    :param data: whether it is train or val or test data
+    :return: formatted data
     '''
+    dataset_ID = 4
+    
+    print(file)
+    
+    data = generate_data_from_txt(file)
 
-    files_path = dir
+    data = first_row_process(data)
 
-    file_names = []
-
-    for file in sorted(os.listdir(files_path)):
-        if file.endswith('.txt'):
-            file_names.append(file)
-
-
-    index = 1
-
-    for file in file_names:
-        filepath = files_path + file
-
-        data = generate_data_from_txt(filepath)
-
-        data = first_row_process(data)
-
-        zero_row = data[:,0]
-
-        corrected_zero_row = zero_row_process(zero_row)
-        data[:,0] = corrected_zero_row
-
-        formatted_data = np.delete(data,[2,5,6,7,8,9],axis=1)
-        to_save_txt = train_dir + 'APOL/test_obs/traj{:>04}.txt'.format(index)
-
-        save_to_text(formatted_data, to_save_txt, index)
-
-        index+=1
-        # break
-
-def apolloscape_to_formatted(dir, dir_test):
-    '''
-    to create the formatted data from the apolloscape data
-    :param dir: directory of the apolloscape dataset
-    :return: None. Created formatted .txt files
-    '''
-
-    files_path = dir
-
-    file_names = []
-
-    for file in sorted(os.listdir(files_path)):
-        if file.endswith('.txt'):
-            file_names.append(file)
-
-    index = 1
-
-    for file in file_names:
-        filepath = files_path + file
-
-
-        data = generate_data_from_txt(filepath)
-
-        data = first_row_process(data)
-
-        zero_row = data[:,0]
-        corrected_zero_row = zero_row_process(zero_row)
-        data[:,0] = corrected_zero_row
+    zero_row = data[:,0]
+    corrected_zero_row = zero_row_process(zero_row)
+    data[:,0] = corrected_zero_row
+    
+    
+    if data_type == 'train' or data_type == 'val':
+        
         formatted_data = np.delete(data,[4,5,6,7,8],axis=1)
-        # n_ones = np.ones((formatted_data.shape[0],1))
-        # final = np.concatenate((formatted_data, n_ones), axis=1)
-        # print(final[:,0])
 
-        if index <= 8:
-            to_save_txt = files_path + 'APOL/train/traj{:>04}.txt'.format(index)
-            print('index in if<=8',index)
+    elif data_type == 'test':
+        
+        formatted_data = np.delete(data,[2,5,6,7,8,9],axis=1)
+    
+    new_col = np.ones((formatted_data.shape[0] , 1) ) * dataset_ID 
+    final_data = np.hstack((formatted_data, new_col))
 
-        else:
-            to_save_txt = files_path + 'APOL/val/traj{:>04}.txt'.format(index)
-            print('index in if = 9', index)
+    return final_data
 
-        save_to_text(formatted_data, to_save_txt, index)
+def apolloscape_to_formatted(dir, DATA_DIR, DATA_DIR_TEST, data_type):
 
-        index+=1
-        # break
-    apolloscape_to_formatted_test(dir_test, dir)
+    
+    train_val_file_names = []
+    test_file_names = []
+
+    for file in sorted(os.listdir(DATA_DIR)):
+        if file.endswith('.txt'):
+            train_val_file_names.append(file)
 
 
+    for file in sorted(os.listdir(DATA_DIR_TEST)):
+        if file.endswith('.txt'):
+            test_file_names.append(file)
+
+    if data_type == 'train':
+
+        file = DATA_DIR +  train_val_file_names[3]
+
+        generated_data = generate_data(file, data_type)
+
+        to_save_txt = './resources/data/' + 'APOL/train/trainSet0.npy'
+
+        save_to_file( generated_data, to_save_txt)
+
+    #     save_to_text(formatted_data, to_save_txt)
+
+
+    if data_type == 'val':
+
+        file = DATA_DIR + train_val_file_names[8]
+
+        generated_data = generate_data(file, data_type)
+
+
+        to_save_txt = './resources/data/' + 'APOL/val/valSet0.npy'
+
+        save_to_file( generated_data, to_save_txt)
+
+
+    if data_type == 'test':
+
+        file = DATA_DIR_TEST + test_file_names[0]
+
+        generated_data = generate_data(file, data_type)
+
+
+        to_save_txt = './resources/data/' + 'APOL/test/testSet0.npy'
+
+        save_to_file( generated_data, to_save_txt)
 
 '''
 Instructions for directory structure:
-
 1. Download the dataset from the link provided in the README.md
-2. Unzip the downloaded files and
-3. Follow below format  
+2. Unzip the downloaded files sample_trajectory.zip and prediction_test.zip
+3. Follow below format
+
+dir = folder_where_unzipped_apolloscape_data_is_present
 DATA_DIR = folder_where_unzipped_apolloscape_data_is_present + '/sample_trajectory/asdt_sample_ trajectory/'
 DATA_DIR_TEST = folder_where_unzipped_apolloscape_data_is_present + '/prediction_test/'
 '''
 
-apolloscape_to_formatted(DATA_DIR, DATA_DIR_TEST)
+DATA_DIR = dir + 'sample_trajectory/asdt_sample_ trajectory/'
+DATA_DIR_TEST = dir + '/prediction_test/'
+
+data_type = 'val' #train, val, test
+
+apolloscape_to_formatted(dir, DATA_DIR, DATA_DIR_TEST, data_type)

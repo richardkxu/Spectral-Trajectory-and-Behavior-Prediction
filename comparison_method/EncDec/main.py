@@ -3,10 +3,10 @@ from def_train_eval import *
 from data_stream import *
 import pickle              # import module first
 
-DATA = 'LYFT'
+DATA = 'NGSIM'
 SUFIX = ''
 DATA_DIR = '../../resources/data/{}/'.format(DATA)
-epochs = 10
+epochs = 30
 
 
 

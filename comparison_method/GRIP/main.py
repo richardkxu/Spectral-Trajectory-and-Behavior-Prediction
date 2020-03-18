@@ -4,18 +4,18 @@ from def_train_eval import *
 from data_stream import *
 import pickle              # import module first
 
-DATA = 'ARGO'
-SUFIX = 'notrain'
-TRAIN = True
+DATA = 'APOL'
+SUFIX = '1st'
+TRAIN = False
 EVAL = True 
 DIR = '../../resources/data/{}/'.format(DATA)
 
-epochs = 1
+epochs = 3
 save_per_epoch = 5
 
 
-train_seq_len = 20
-pred_seq_len = 20
+train_seq_len = 6
+pred_seq_len = 10
 
 
 if __name__ == "__main__":

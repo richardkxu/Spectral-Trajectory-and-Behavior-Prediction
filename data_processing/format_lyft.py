@@ -190,41 +190,6 @@ def format_frame_ID(ts_obj_ID):
 
     return frame_ID_arr
 
-def save_to_text(final, to_save_txt,index):
-    '''
-    to save as .txt files
-    :param final: final array obtained
-    :param to_save_txt: filepath to save as
-    :param index: scene index to be considered as dataset ID
-    :return: None
-    '''
-
-    print(to_save_txt)
-    ind = index
-
-    lisss = np.ndarray.tolist(final)
-    for items in lisss:
-        items[0] = int(items[0])
-        items[1] = int(items[1])
-
-
-    with open(to_save_txt, 'w') as filehandle:
-        for l in lisss:
-            # filehandle.write('%d \t %d \t %f \t %f \t %f \n' %(l[0], l[1], l[2], l[3], l[4]))
-            filehandle.write("{},{},{},{},{}\n".format(ind,l[1],l[0],l[2],l[3]))
-
-
-def save_to_file(data,files_path_to_sv):
-    '''
-    to save as .npy file
-    :param data: the final array
-    :param files_path_to_sv: file path where to save the file
-    :return: None
-    '''
-    print(files_path_to_sv)
-
-    np.save(files_path_to_sv, data)
-
 
 def lyft_to_formatted(dir):
     '''
@@ -251,6 +216,11 @@ def lyft_to_formatted(dir):
 
     #iterating through all the scene data
     index = 1
+    
+    empty_array_train = np.empty((0,5))
+    empty_array_test = np.empty((0,5))
+    empty_array_val = np.empty((0,5))
+
 
     for items2 in scene:
 
@@ -272,25 +242,43 @@ def lyft_to_formatted(dir):
         ts_obj_ID_arr = np.asarray(ts_obj_ID)
         ts_obj_ID_arr[:,0] = formatted_zero_row
         print('got ts_obj_ID_arr for scene ', index)
+        
+        ts_obj_ID_arr[:,4] = np.ones((ts_obj_ID_arr.shape[0],)) * index
+        
+        if index <=126 and index >=0:
 
-        if index <=126:
-            to_save_txt = dir + 'LYFT/train/traj{:>04}.txt'.format(index)
-            # print('index in <126', index)
-        elif index <= 144:
-            to_save_txt = dir + 'LYFT/val/traj{:>04}.txt'.format(index)
-            # print('index in <144', index)
+            empty_array_train =  np.concatenate((empty_array_train, ts_obj_ID_arr))  
 
-        else:
-            to_save_txt = dir + 'LYFT/test_obs/traj{:>04}.txt'.format(index)
-            # print('index in <180', index)
+        elif index <= 144 and index >126:
+            empty_array_test =  np.concatenate((empty_array_test, ts_obj_ID_arr))  
 
-        # save_to_file(ts_obj_ID_arr, files_path_to_sv)
-        save_to_text(ts_obj_ID_arr,to_save_txt, index)
-        print('saved txt and npy for scene', index)
+        elif index <=180 and index> 144:
+#             to_save_txt = dir + 'LYFT/test_obs/traj{:>04}.txt'.format(index)
+            empty_array_val =  np.concatenate((empty_array_val, ts_obj_ID_arr))  
 
         index += 1
-        break
+
+    return empty_array_train, empty_array_test, empty_array_val
 
 
 DATA_DIR = 'directory/' ## provide the directory where the downloaded data is present
-lyft_to_formatted(DATA_DIR)
+
+# train_dir = './resources/data/' + 'LYFT/train/*.txt'
+files_path_to_sv_train = './resources/data/' + 'LYFT/train/trainSet0.npy'
+
+
+# test_dir = './resources/data/' + 'LYFT/test/*.txt'
+files_path_to_sv_test = './resources/data/' + 'LYFT/test/testSet0.npy'
+
+# val_dir = './resources/data/' + 'LYFT/val/*.txt'
+files_path_to_sv_val = './resources/data/' + 'LYFT/val/valSet0.npy'
+
+print(files_path_to_sv_train)
+print(files_path_to_sv_test)
+print(files_path_to_sv_val)
+
+tr, te, va  = lyft_to_formatted(DATA_DIR)
+
+np.save(files_path_to_sv_train, tr)
+np.save(files_path_to_sv_test, te)
+np.save(files_path_to_sv_val, va)

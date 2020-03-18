@@ -5,7 +5,7 @@ import torch.nn.functional as F
 import numpy as np
 from torch.autograd import Variable
 
-device = torch.device("cuda:0")
+device = torch.device("cuda:1")
 
 class GraphConvolution ( nn.Module ):
     """
@@ -104,7 +104,8 @@ class Encoder ( nn.Module ):
         xt = xt.cpu ().detach ().numpy ()
         A = np.zeros ( [ xt.shape[ 0 ] , xt.shape[ 0 ] ] )
         for i in range ( len ( xt ) ):
-            if xt[i][0] and xt[i][1]:
+            #if xt[ i ] is not None:
+            if xt[i][0] and xt[i][1] :
                 neighbors = self.computeKNN ( xt , i , 4 )
                 for neighbor in neighbors:
                     # if neighbor in labels:
