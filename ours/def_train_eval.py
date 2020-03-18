@@ -14,7 +14,11 @@ import matplotlib.pyplot as plt
 from scipy.sparse.linalg import eigs
 from torch.autograd import Variable
 
-device = torch.device("cuda:1")
+
+# change according to yr device
+# device = torch.device("cuda:1")
+device = torch.device("cuda:0")
+
 BATCH_SIZE=128
 MU = 5
 MODEL_LOC = '../resources/trained_models/Ours/{}'
@@ -100,9 +104,11 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
 
     # loading pre-trained weights, comment out if you want to train
     print("loading {}...".format(encoder1loc))
-    encoder_stream1.load_state_dict(torch.load(encoder1loc))
+    # the author save the whole model, which is bounded to cuda:1
+    # remap to the current device on yr machine
+    encoder_stream1.load_state_dict(torch.load(encoder1loc, map_location=device))
     encoder_stream1.eval()       
-    decoder_stream1.load_state_dict(torch.load(decoder1loc))        
+    decoder_stream1.load_state_dict(torch.load(decoder1loc, map_location=device))
     decoder_stream1.eval()
 
     # stream2
@@ -216,9 +222,9 @@ def eval(epochs, tr_seq_1, pred_seq_1, data, sufix, learning_rate=1e-3, loc=MODE
     decoder_stream1 = Decoder ( 's1' , input_dim , hidden_dim , output_dim, batch_size, step_size ).to ( device )
     encoder_stream1_optimizer = optim.RMSprop(encoder_stream1.parameters(), lr=learning_rate)
     decoder_stream1_optimizer = optim.RMSprop(decoder_stream1.parameters(), lr=learning_rate)
-    encoder_stream1.load_state_dict(torch.load(encoder1loc))
+    encoder_stream1.load_state_dict(torch.load(encoder1loc, map_location=device))
     encoder_stream1.eval()       
-    decoder_stream1.load_state_dict(torch.load(decoder1loc))        
+    decoder_stream1.load_state_dict(torch.load(decoder1loc, map_location=device))
     decoder_stream1.eval()
 
     compute_accuracy_stream1(tr_seq_1, pred_seq_1, encoder_stream1, decoder_stream1, epochs)
