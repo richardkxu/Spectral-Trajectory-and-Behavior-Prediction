@@ -10,14 +10,17 @@ import pickle
 
 
 DATA = 'APOL'
+# DATA = 'LYFT'
 # DATA = 'ARGO'
 
 SUFIX = '1st'
 
 
 device = torch.device("cuda:0")
-s2 = False
+#s2 = False
+s2 = True
 TRAIN = True
+#TRAIN = False
 EVAL = True
 
 
@@ -28,8 +31,8 @@ epochs = 15
 
 save_per_epochs = 5
 
-train_seq_len = 20
-pred_seq_len = 30
+train_seq_len = 6
+pred_seq_len = 10
 
 
 if __name__ == "__main__":

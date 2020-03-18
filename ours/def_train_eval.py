@@ -22,7 +22,7 @@ MODEL_LOC = '../resources/trained_models/Ours/{}'
 
 def load_batch(index, size, seq_ID, train_sequence_stream1, pred_sequence_stream_1, train_sequence_stream2, pred_sequence_stream2, train_eig_seq, pred_eig_seq):
     '''
-    to load a batch of data
+    load a batch of data
     :param index: index of the batch
     :param size: size of the batch of data
     :param seq_ID: either train sequence or a pred sequence, give as a str
@@ -92,6 +92,7 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
     hidden_dim = fea_size
     output_dim = fea_size
 
+    # stream1
     encoder_stream1 = Encoder ( input_dim , hidden_dim , output_dim ).to ( device )
     decoder_stream1 = Decoder ( 's1' , input_dim , hidden_dim , output_dim, batch_size, step_size ).to ( device )
     encoder_stream1_optimizer = optim.RMSprop(encoder_stream1.parameters(), lr=learning_rate)
@@ -101,6 +102,8 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
     # encoder_stream1.eval()
     # decoder_stream1.load_state_dict(torch.load(decoder1loc))
     # decoder_stream1.eval()
+
+    # stream2
     if s2 is True:
         batch = load_batch ( 0 , BATCH_SIZE , 'pred' , train_raw , pred_raw , train2_raw , pred2_raw, train_eig_raw, pred_eig_raw )
         _ , _, batch = batch
@@ -216,8 +219,10 @@ def eval(epochs, tr_seq_1, pred_seq_1, data, sufix, learning_rate=1e-3, loc=MODE
     decoder_stream1.load_state_dict(torch.load(decoder1loc))        
     decoder_stream1.eval()
 
-    
-    compute_accuracy_stream1(tr_seq_1, pred_seq_1, encoder_stream1, decoder_stream1, epochs) 
+    compute_accuracy_stream1(tr_seq_1, pred_seq_1, encoder_stream1, decoder_stream1, epochs)
+
+    # as of Feb, 2020, stream2 eval is not available !
+
 
 
 

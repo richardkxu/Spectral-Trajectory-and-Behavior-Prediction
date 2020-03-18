@@ -44,6 +44,9 @@ class GraphConvolution ( nn.Module ):
 
 
 class GCN ( nn.Module ):
+    """
+    Graph Conv Network
+    """
     def __init__ ( self , nfeat , nhid , nclass , dropout ):
         super ( GCN , self ).__init__ ()
 
@@ -60,6 +63,9 @@ class GCN ( nn.Module ):
 
 
 class Encoder ( nn.Module ):
+    """
+    LSTM encoder block for both stream1 and stream2
+    """
     def __init__ ( self , input_size , cell_size , hidden_size ):
         """
         cell_size is the size of cell_state.
@@ -145,6 +151,9 @@ class Encoder ( nn.Module ):
 
 
 class Decoder(nn.Module):
+    """
+    LSTM decoder block for both stream1 and stream2
+    """
     def __init__(self, stream, input_size , cell_size , hidden_size, batchsize, timestep):
         super(Decoder, self).__init__()
         self.cell_size = cell_size
