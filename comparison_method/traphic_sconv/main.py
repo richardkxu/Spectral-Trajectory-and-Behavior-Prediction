@@ -24,11 +24,18 @@ warnings.filterwarnings("ignore")
 # txt file for training (5 cols):
 # frames_idx, vid_idx, tl-X, tl-Y, dset_idx
 
-
-# dataset dirs
-# DATASET = 'ARGO'
-DATASET = 'LYFT'
 # DATASET = 'APOL'
+# INPUT = 6
+# OUTPUT = 10
+
+# DATASET = 'LYFT'
+# INPUT = 20
+# OUTPUT = 30
+
+DATASET = 'ARGO'
+INPUT = 20
+OUTPUT = 30
+
 LOG = './logs/'
 # LOAD = 'Traphic_LYFT_model_30-50l_12em.tar'
 LOAD = ''
@@ -36,12 +43,13 @@ CUDA = True
 # CUDA = False
 DEVICE = 'cuda:0'
 # DEVICE = 'cuda:1'
+
+# only 2 models available
 # PREDALGO = 'Traphic'
 PREDALGO = 'Social_Conv'
+
 PRETRAINEPOCHS = 6
 TRAINEPOCHS = 20
-INPUT = 20
-OUTPUT = 30
 NAME = '{}_{}' + '_model_{}-{}l_{}e.tar'.format(INPUT, OUTPUT, PRETRAINEPOCHS + TRAINEPOCHS)
 # NAME = 'Traphic_LYFT_model_30-50l_12em.tar'
 TENSORBOARD = False
