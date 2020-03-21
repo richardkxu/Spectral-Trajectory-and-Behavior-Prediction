@@ -103,11 +103,12 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
     decoder_stream1_optimizer = optim.RMSprop(decoder_stream1.parameters(), lr=learning_rate)
 
     # loading pre-trained weights, comment out if you want to train
-    print("loading {}...".format(encoder1loc))
+    print("loading pretrained stream1 encoder from: {}...".format(encoder1loc))
+    print("loading pretrained stream1 decoder from: {}...".format(decoder1loc))
     # the author save the whole model, which is bounded to cuda:1
     # remap to the current device on yr machine
     encoder_stream1.load_state_dict(torch.load(encoder1loc, map_location=device))
-    encoder_stream1.eval()       
+    encoder_stream1.eval()
     decoder_stream1.load_state_dict(torch.load(decoder1loc, map_location=device))
     decoder_stream1.eval()
 
@@ -127,12 +128,11 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
         encoder_stream2_optimizer = optim.RMSprop(encoder_stream2.parameters(), lr=learning_rate)
         decoder_stream2_optimizer = optim.RMSprop(decoder_stream2.parameters(), lr=learning_rate)
 
-
     for epoch in range(0, n_epochs):
-#        print("epoch: ", epoch)
         print_loss_total_stream1 = 0  # Reset every print_every
         print_loss_total_stream2 = 0  # Reset every plot_every
         # Prepare train and test batch
+        # train stream1
         for bch in range(num_batches):
             print('# {}/{} epoch {}/{} batch'.format(epoch, n_epochs, bch, num_batches))
             trainbatch_both = load_batch ( bch , BATCH_SIZE , 'train' , train_raw , pred_raw, train2_raw, pred2_raw, train_eig_raw, pred_eig_raw )
@@ -168,6 +168,7 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
             # print_loss_total_stream1 = 0
         print( 'stream1 average loss:', print_loss_total_stream1/num_batches)
             # print('%s (%d %d%%) %.4f' % (timeSince(start, epoch / n_epochs),epoch, epoch / n_epochs * 100, print_loss_avg_stream1))
+        # train stream2
         if s2 is True:
             # print_loss_avg_stream2 = print_loss_total_stream2 / print_every
             # print_loss_total_stream2 = 0
@@ -188,9 +189,13 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
             save_model(encoder_stream1, decoder_stream1, encoder_stream2, decoder_stream2, data, sufix, s2)
 
     compute_accuracy_stream1(train_dataloader, valid_dataloader, encoder_stream1, decoder_stream1, n_epochs)
+
+    # as of Mar 19, 2020, stream2 eval code is not available !
+
     # showPlot(plot_losses)
     save_model(encoder_stream1, decoder_stream1, encoder_stream2, decoder_stream2 , data, sufix, s2)
     return encoder_stream1, decoder_stream1
+
 
 def eval(epochs, tr_seq_1, pred_seq_1, data, sufix, learning_rate=1e-3, loc=MODEL_LOC):
     
@@ -223,15 +228,13 @@ def eval(epochs, tr_seq_1, pred_seq_1, data, sufix, learning_rate=1e-3, loc=MODE
     encoder_stream1_optimizer = optim.RMSprop(encoder_stream1.parameters(), lr=learning_rate)
     decoder_stream1_optimizer = optim.RMSprop(decoder_stream1.parameters(), lr=learning_rate)
     encoder_stream1.load_state_dict(torch.load(encoder1loc, map_location=device))
-    encoder_stream1.eval()       
+    encoder_stream1.eval()
     decoder_stream1.load_state_dict(torch.load(decoder1loc, map_location=device))
     decoder_stream1.eval()
 
     compute_accuracy_stream1(tr_seq_1, pred_seq_1, encoder_stream1, decoder_stream1, epochs)
 
-    # as of Feb, 2020, stream2 eval is not available !
-
-
+    # as of Mar 19, 2020, stream2 eval code is not available !
 
 
 def train_stream1(input_tensor, target_tensor, encoder, decoder, encoder_optimizer, decoder_optimizer, stream2_output,batch_agent_ids, testbatch2, s2):
@@ -260,6 +263,7 @@ def train_stream1(input_tensor, target_tensor, encoder, decoder, encoder_optimiz
     decoder_optimizer.step()
     return loss.item() / target_length
 
+
 def save_model(encoder_stream1, decoder_stream1, encoder_stream2, decoder_stream2, data, sufix, s2, loc=MODEL_LOC):
     torch.save(encoder_stream1.state_dict(), os.path.join(loc.format(data), 'encoder_stream1_{}{}.pt'.format(data, sufix)))
     torch.save(decoder_stream1.state_dict(), os.path.join(loc.format(data), 'decoder_stream1_{}{}.pt'.format(data, sufix)))
@@ -287,6 +291,7 @@ def train_stream2(input_tensor, target_tensor, encoder, decoder, encoder_optimiz
     decoder_optimizer.step()
 
     return loss.item(), stream2_out
+
 
 def generate(inputs, encoder, decoder):
     with torch.no_grad():
@@ -327,6 +332,7 @@ def log_likelihood(mu_1, mu_2, log_sigma_1, log_sigma_2, rho, y, cluster_centers
         epoch_loss += batch_loss
     return epoch_loss
 
+
 def compute_sample_loss(mu_1, mu_2,log_sigma_1, log_sigma_2, rho, y):
     const = 1E-20 # to prevent numerical error
     pi_term = torch.Tensor([2*np.pi]).to(device)
@@ -344,6 +350,7 @@ def compute_sample_loss(mu_1, mu_2,log_sigma_1, log_sigma_2, rho, y):
     mog_lik1 =  1/(pi_term * log_sigma_1 * log_sigma_2 * (1-rho**2).sqrt() )
     mog_lik = (mog_lik1*mog_lik2).log()
     return mog_lik
+
 
 def calculate_cluster_centers(agent_IDs, stream2_output, testbatch2):
     stream2_output = stream2_output.cpu().detach().numpy()

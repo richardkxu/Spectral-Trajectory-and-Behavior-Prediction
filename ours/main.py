@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 from def_train_eval import *
 
-import pickle            
+import pickle
 
 
 # DATA = 'APOL'
@@ -39,9 +39,9 @@ save_per_epochs = 5
 if __name__ == "__main__":
 
     if TRAIN:
+        # load stream1 preprocessed data
         f1 = open ( DIR + 'stream1_obs_data_train.pkl', 'rb')  # 'r' for reading; can be omitted
         g1 = open ( DIR + 'stream1_pred_data_train.pkl', 'rb')  # 'r' for reading; can be omitted
-        
 
         tr_seq_1 = pickle.load ( f1 )  # load file content as mydict
         pred_seq_1 = pickle.load ( g1 )  # load file content as mydict
@@ -49,6 +49,7 @@ if __name__ == "__main__":
         g1.close()
 
         if s2:
+            # load stream2 preprocessed data
             f2 = open ( DIR + 'stream2_obs_data_train.pkl', 'rb')  # 'r' for reading; can be omitted
             g2 = open ( DIR + 'stream2_pred_data_train.pkl', 'rb')  # 'r' for reading; can be omitted
             f3 = open ( DIR + 'stream2_obs_eigs_train.pkl', 'rb')  # 'r' for reading; can be omitted
