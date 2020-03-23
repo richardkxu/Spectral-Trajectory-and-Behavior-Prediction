@@ -61,6 +61,7 @@ def load_batch(index, size, seq_ID, train_sequence_stream1, pred_sequence_stream
 
 
 def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,valid2_dataloader, train_eig, val_eig, data, sufix, s2, print_every=1, plot_every=1000, learning_rate=1e-3, save_every=5):
+    print("Calling trainIters...")
     start = time.time()
     plot_losses_stream1 = []
     plot_losses_stream2 = []
@@ -102,15 +103,15 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
     encoder_stream1_optimizer = optim.RMSprop(encoder_stream1.parameters(), lr=learning_rate)
     decoder_stream1_optimizer = optim.RMSprop(decoder_stream1.parameters(), lr=learning_rate)
 
-    # loading pre-trained weights, comment out if you want to train
-    print("loading pretrained stream1 encoder from: {}...".format(encoder1loc))
-    print("loading pretrained stream1 decoder from: {}...".format(decoder1loc))
-    # the author save the whole model, which is bounded to cuda:1
-    # remap to the current device on yr machine
-    encoder_stream1.load_state_dict(torch.load(encoder1loc, map_location=device))
-    encoder_stream1.eval()
-    decoder_stream1.load_state_dict(torch.load(decoder1loc, map_location=device))
-    decoder_stream1.eval()
+    # # loading pre-trained weights, comment out if you want to train
+    # print("loading pretrained stream1 encoder from: {}...".format(encoder1loc))
+    # print("loading pretrained stream1 decoder from: {}...".format(decoder1loc))
+    # # the author save the whole model, which is bounded to cuda:1
+    # # remap to the current device on yr machine
+    # encoder_stream1.load_state_dict(torch.load(encoder1loc, map_location=device))
+    # encoder_stream1.eval()
+    # decoder_stream1.load_state_dict(torch.load(decoder1loc, map_location=device))
+    # decoder_stream1.eval()
 
     # stream2
     if s2 is True:
@@ -198,7 +199,7 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
 
 
 def eval(epochs, tr_seq_1, pred_seq_1, data, sufix, learning_rate=1e-3, loc=MODEL_LOC):
-    
+    print("Calling eval...")
     encoder_stream1 = None
     decoder_stream1 = None
     encoder_stream2 = None

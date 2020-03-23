@@ -26,7 +26,7 @@ device = torch.device("cuda:0")
 SUFIX = '1stS1new'
 
 s2 = True  # if True, two stream model
-TRAIN = False
+TRAIN = True
 EVAL = True
 
 DIR = '../resources/data/{}/'.format(DATA)

@@ -1,0 +1,667 @@
+/home/richardkxu/anaconda3/envs/sc-glstm/bin/python /home/richardkxu/Documents/Spectral-Trajectory-and-Behavior-Prediction/ours/main.py
+Calling trainIters...
+# 0/15 epoch 0/40 batch
+# 0/15 epoch 1/40 batch
+# 0/15 epoch 2/40 batch
+# 0/15 epoch 3/40 batch
+# 0/15 epoch 4/40 batch
+# 0/15 epoch 5/40 batch
+# 0/15 epoch 6/40 batch
+# 0/15 epoch 7/40 batch
+# 0/15 epoch 8/40 batch
+# 0/15 epoch 9/40 batch
+# 0/15 epoch 10/40 batch
+# 0/15 epoch 11/40 batch
+# 0/15 epoch 12/40 batch
+# 0/15 epoch 13/40 batch
+# 0/15 epoch 14/40 batch
+# 0/15 epoch 15/40 batch
+# 0/15 epoch 16/40 batch
+# 0/15 epoch 17/40 batch
+# 0/15 epoch 18/40 batch
+# 0/15 epoch 19/40 batch
+# 0/15 epoch 20/40 batch
+# 0/15 epoch 21/40 batch
+# 0/15 epoch 22/40 batch
+# 0/15 epoch 23/40 batch
+# 0/15 epoch 24/40 batch
+# 0/15 epoch 25/40 batch
+# 0/15 epoch 26/40 batch
+# 0/15 epoch 27/40 batch
+# 0/15 epoch 28/40 batch
+# 0/15 epoch 29/40 batch
+# 0/15 epoch 30/40 batch
+# 0/15 epoch 31/40 batch
+# 0/15 epoch 32/40 batch
+# 0/15 epoch 33/40 batch
+# 0/15 epoch 34/40 batch
+# 0/15 epoch 35/40 batch
+# 0/15 epoch 36/40 batch
+# 0/15 epoch 37/40 batch
+# 0/15 epoch 38/40 batch
+# 0/15 epoch 39/40 batch
+stream1 average loss: 19.96216735839844
+stream2 average loss: 0.006052003300283104
+model saved at ../resources/trained_models/Ours/ARGO
+# 1/15 epoch 0/40 batch
+# 1/15 epoch 1/40 batch
+# 1/15 epoch 2/40 batch
+# 1/15 epoch 3/40 batch
+# 1/15 epoch 4/40 batch
+# 1/15 epoch 5/40 batch
+# 1/15 epoch 6/40 batch
+# 1/15 epoch 7/40 batch
+# 1/15 epoch 8/40 batch
+# 1/15 epoch 9/40 batch
+# 1/15 epoch 10/40 batch
+# 1/15 epoch 11/40 batch
+# 1/15 epoch 12/40 batch
+# 1/15 epoch 13/40 batch
+# 1/15 epoch 14/40 batch
+# 1/15 epoch 15/40 batch
+# 1/15 epoch 16/40 batch
+# 1/15 epoch 17/40 batch
+# 1/15 epoch 18/40 batch
+# 1/15 epoch 19/40 batch
+# 1/15 epoch 20/40 batch
+# 1/15 epoch 21/40 batch
+# 1/15 epoch 22/40 batch
+# 1/15 epoch 23/40 batch
+# 1/15 epoch 24/40 batch
+# 1/15 epoch 25/40 batch
+# 1/15 epoch 26/40 batch
+# 1/15 epoch 27/40 batch
+# 1/15 epoch 28/40 batch
+# 1/15 epoch 29/40 batch
+# 1/15 epoch 30/40 batch
+# 1/15 epoch 31/40 batch
+# 1/15 epoch 32/40 batch
+# 1/15 epoch 33/40 batch
+# 1/15 epoch 34/40 batch
+# 1/15 epoch 35/40 batch
+# 1/15 epoch 36/40 batch
+# 1/15 epoch 37/40 batch
+# 1/15 epoch 38/40 batch
+# 1/15 epoch 39/40 batch
+stream1 average loss: 18.277656400203703
+stream2 average loss: 0.005884748336393386
+# 2/15 epoch 0/40 batch
+# 2/15 epoch 1/40 batch
+# 2/15 epoch 2/40 batch
+# 2/15 epoch 3/40 batch
+# 2/15 epoch 4/40 batch
+# 2/15 epoch 5/40 batch
+# 2/15 epoch 6/40 batch
+# 2/15 epoch 7/40 batch
+# 2/15 epoch 8/40 batch
+# 2/15 epoch 9/40 batch
+# 2/15 epoch 10/40 batch
+# 2/15 epoch 11/40 batch
+# 2/15 epoch 12/40 batch
+# 2/15 epoch 13/40 batch
+# 2/15 epoch 14/40 batch
+# 2/15 epoch 15/40 batch
+# 2/15 epoch 16/40 batch
+# 2/15 epoch 17/40 batch
+# 2/15 epoch 18/40 batch
+# 2/15 epoch 19/40 batch
+# 2/15 epoch 20/40 batch
+# 2/15 epoch 21/40 batch
+# 2/15 epoch 22/40 batch
+# 2/15 epoch 23/40 batch
+# 2/15 epoch 24/40 batch
+# 2/15 epoch 25/40 batch
+# 2/15 epoch 26/40 batch
+# 2/15 epoch 27/40 batch
+# 2/15 epoch 28/40 batch
+# 2/15 epoch 29/40 batch
+# 2/15 epoch 30/40 batch
+# 2/15 epoch 31/40 batch
+# 2/15 epoch 32/40 batch
+# 2/15 epoch 33/40 batch
+# 2/15 epoch 34/40 batch
+# 2/15 epoch 35/40 batch
+# 2/15 epoch 36/40 batch
+# 2/15 epoch 37/40 batch
+# 2/15 epoch 38/40 batch
+# 2/15 epoch 39/40 batch
+stream1 average loss: 17.64150418639183
+stream2 average loss: 0.005884926661383361
+# 3/15 epoch 0/40 batch
+# 3/15 epoch 1/40 batch
+# 3/15 epoch 2/40 batch
+# 3/15 epoch 3/40 batch
+# 3/15 epoch 4/40 batch
+# 3/15 epoch 5/40 batch
+# 3/15 epoch 6/40 batch
+# 3/15 epoch 7/40 batch
+# 3/15 epoch 8/40 batch
+# 3/15 epoch 9/40 batch
+# 3/15 epoch 10/40 batch
+# 3/15 epoch 11/40 batch
+# 3/15 epoch 12/40 batch
+# 3/15 epoch 13/40 batch
+# 3/15 epoch 14/40 batch
+# 3/15 epoch 15/40 batch
+# 3/15 epoch 16/40 batch
+# 3/15 epoch 17/40 batch
+# 3/15 epoch 18/40 batch
+# 3/15 epoch 19/40 batch
+# 3/15 epoch 20/40 batch
+# 3/15 epoch 21/40 batch
+# 3/15 epoch 22/40 batch
+# 3/15 epoch 23/40 batch
+# 3/15 epoch 24/40 batch
+# 3/15 epoch 25/40 batch
+# 3/15 epoch 26/40 batch
+# 3/15 epoch 27/40 batch
+# 3/15 epoch 28/40 batch
+# 3/15 epoch 29/40 batch
+# 3/15 epoch 30/40 batch
+# 3/15 epoch 31/40 batch
+# 3/15 epoch 32/40 batch
+# 3/15 epoch 33/40 batch
+# 3/15 epoch 34/40 batch
+# 3/15 epoch 35/40 batch
+# 3/15 epoch 36/40 batch
+# 3/15 epoch 37/40 batch
+# 3/15 epoch 38/40 batch
+# 3/15 epoch 39/40 batch
+stream1 average loss: 17.8799156665802
+stream2 average loss: 0.005884737172164023
+# 4/15 epoch 0/40 batch
+# 4/15 epoch 1/40 batch
+# 4/15 epoch 2/40 batch
+# 4/15 epoch 3/40 batch
+# 4/15 epoch 4/40 batch
+# 4/15 epoch 5/40 batch
+# 4/15 epoch 6/40 batch
+# 4/15 epoch 7/40 batch
+# 4/15 epoch 8/40 batch
+# 4/15 epoch 9/40 batch
+# 4/15 epoch 10/40 batch
+# 4/15 epoch 11/40 batch
+# 4/15 epoch 12/40 batch
+# 4/15 epoch 13/40 batch
+# 4/15 epoch 14/40 batch
+# 4/15 epoch 15/40 batch
+# 4/15 epoch 16/40 batch
+# 4/15 epoch 17/40 batch
+# 4/15 epoch 18/40 batch
+# 4/15 epoch 19/40 batch
+# 4/15 epoch 20/40 batch
+# 4/15 epoch 21/40 batch
+# 4/15 epoch 22/40 batch
+# 4/15 epoch 23/40 batch
+# 4/15 epoch 24/40 batch
+# 4/15 epoch 25/40 batch
+# 4/15 epoch 26/40 batch
+# 4/15 epoch 27/40 batch
+# 4/15 epoch 28/40 batch
+# 4/15 epoch 29/40 batch
+# 4/15 epoch 30/40 batch
+# 4/15 epoch 31/40 batch
+# 4/15 epoch 32/40 batch
+# 4/15 epoch 33/40 batch
+# 4/15 epoch 34/40 batch
+# 4/15 epoch 35/40 batch
+# 4/15 epoch 36/40 batch
+# 4/15 epoch 37/40 batch
+# 4/15 epoch 38/40 batch
+# 4/15 epoch 39/40 batch
+stream1 average loss: 17.342833065986632
+stream2 average loss: 0.005884530406910926
+# 5/15 epoch 0/40 batch
+# 5/15 epoch 1/40 batch
+# 5/15 epoch 2/40 batch
+# 5/15 epoch 3/40 batch
+# 5/15 epoch 4/40 batch
+# 5/15 epoch 5/40 batch
+# 5/15 epoch 6/40 batch
+# 5/15 epoch 7/40 batch
+# 5/15 epoch 8/40 batch
+# 5/15 epoch 9/40 batch
+# 5/15 epoch 10/40 batch
+# 5/15 epoch 11/40 batch
+# 5/15 epoch 12/40 batch
+# 5/15 epoch 13/40 batch
+# 5/15 epoch 14/40 batch
+# 5/15 epoch 15/40 batch
+# 5/15 epoch 16/40 batch
+# 5/15 epoch 17/40 batch
+# 5/15 epoch 18/40 batch
+# 5/15 epoch 19/40 batch
+# 5/15 epoch 20/40 batch
+# 5/15 epoch 21/40 batch
+# 5/15 epoch 22/40 batch
+# 5/15 epoch 23/40 batch
+# 5/15 epoch 24/40 batch
+# 5/15 epoch 25/40 batch
+# 5/15 epoch 26/40 batch
+# 5/15 epoch 27/40 batch
+# 5/15 epoch 28/40 batch
+# 5/15 epoch 29/40 batch
+# 5/15 epoch 30/40 batch
+# 5/15 epoch 31/40 batch
+# 5/15 epoch 32/40 batch
+# 5/15 epoch 33/40 batch
+# 5/15 epoch 34/40 batch
+# 5/15 epoch 35/40 batch
+# 5/15 epoch 36/40 batch
+# 5/15 epoch 37/40 batch
+# 5/15 epoch 38/40 batch
+# 5/15 epoch 39/40 batch
+stream1 average loss: 18.801774162054063
+stream2 average loss: 0.005884558183606714
+model saved at ../resources/trained_models/Ours/ARGO
+# 6/15 epoch 0/40 batch
+# 6/15 epoch 1/40 batch
+# 6/15 epoch 2/40 batch
+# 6/15 epoch 3/40 batch
+# 6/15 epoch 4/40 batch
+# 6/15 epoch 5/40 batch
+# 6/15 epoch 6/40 batch
+# 6/15 epoch 7/40 batch
+# 6/15 epoch 8/40 batch
+# 6/15 epoch 9/40 batch
+# 6/15 epoch 10/40 batch
+# 6/15 epoch 11/40 batch
+# 6/15 epoch 12/40 batch
+# 6/15 epoch 13/40 batch
+# 6/15 epoch 14/40 batch
+# 6/15 epoch 15/40 batch
+# 6/15 epoch 16/40 batch
+# 6/15 epoch 17/40 batch
+# 6/15 epoch 18/40 batch
+# 6/15 epoch 19/40 batch
+# 6/15 epoch 20/40 batch
+# 6/15 epoch 21/40 batch
+# 6/15 epoch 22/40 batch
+# 6/15 epoch 23/40 batch
+# 6/15 epoch 24/40 batch
+# 6/15 epoch 25/40 batch
+# 6/15 epoch 26/40 batch
+# 6/15 epoch 27/40 batch
+# 6/15 epoch 28/40 batch
+# 6/15 epoch 29/40 batch
+# 6/15 epoch 30/40 batch
+# 6/15 epoch 31/40 batch
+# 6/15 epoch 32/40 batch
+# 6/15 epoch 33/40 batch
+# 6/15 epoch 34/40 batch
+# 6/15 epoch 35/40 batch
+# 6/15 epoch 36/40 batch
+# 6/15 epoch 37/40 batch
+# 6/15 epoch 38/40 batch
+# 6/15 epoch 39/40 batch
+stream1 average loss: 18.168092525005342
+stream2 average loss: 0.005884588125627488
+# 7/15 epoch 0/40 batch
+# 7/15 epoch 1/40 batch
+# 7/15 epoch 2/40 batch
+# 7/15 epoch 3/40 batch
+# 7/15 epoch 4/40 batch
+# 7/15 epoch 5/40 batch
+# 7/15 epoch 6/40 batch
+# 7/15 epoch 7/40 batch
+# 7/15 epoch 8/40 batch
+# 7/15 epoch 9/40 batch
+# 7/15 epoch 10/40 batch
+# 7/15 epoch 11/40 batch
+# 7/15 epoch 12/40 batch
+# 7/15 epoch 13/40 batch
+# 7/15 epoch 14/40 batch
+# 7/15 epoch 15/40 batch
+# 7/15 epoch 16/40 batch
+# 7/15 epoch 17/40 batch
+# 7/15 epoch 18/40 batch
+# 7/15 epoch 19/40 batch
+# 7/15 epoch 20/40 batch
+# 7/15 epoch 21/40 batch
+# 7/15 epoch 22/40 batch
+# 7/15 epoch 23/40 batch
+# 7/15 epoch 24/40 batch
+# 7/15 epoch 25/40 batch
+# 7/15 epoch 26/40 batch
+# 7/15 epoch 27/40 batch
+# 7/15 epoch 28/40 batch
+# 7/15 epoch 29/40 batch
+# 7/15 epoch 30/40 batch
+# 7/15 epoch 31/40 batch
+# 7/15 epoch 32/40 batch
+# 7/15 epoch 33/40 batch
+# 7/15 epoch 34/40 batch
+# 7/15 epoch 35/40 batch
+# 7/15 epoch 36/40 batch
+# 7/15 epoch 37/40 batch
+# 7/15 epoch 38/40 batch
+# 7/15 epoch 39/40 batch
+stream1 average loss: 17.76286900639534
+stream2 average loss: 0.005884294316638261
+# 8/15 epoch 0/40 batch
+# 8/15 epoch 1/40 batch
+# 8/15 epoch 2/40 batch
+# 8/15 epoch 3/40 batch
+# 8/15 epoch 4/40 batch
+# 8/15 epoch 5/40 batch
+# 8/15 epoch 6/40 batch
+# 8/15 epoch 7/40 batch
+# 8/15 epoch 8/40 batch
+# 8/15 epoch 9/40 batch
+# 8/15 epoch 10/40 batch
+# 8/15 epoch 11/40 batch
+# 8/15 epoch 12/40 batch
+# 8/15 epoch 13/40 batch
+# 8/15 epoch 14/40 batch
+# 8/15 epoch 15/40 batch
+# 8/15 epoch 16/40 batch
+# 8/15 epoch 17/40 batch
+# 8/15 epoch 18/40 batch
+# 8/15 epoch 19/40 batch
+# 8/15 epoch 20/40 batch
+# 8/15 epoch 21/40 batch
+# 8/15 epoch 22/40 batch
+# 8/15 epoch 23/40 batch
+# 8/15 epoch 24/40 batch
+# 8/15 epoch 25/40 batch
+# 8/15 epoch 26/40 batch
+# 8/15 epoch 27/40 batch
+# 8/15 epoch 28/40 batch
+# 8/15 epoch 29/40 batch
+# 8/15 epoch 30/40 batch
+# 8/15 epoch 31/40 batch
+# 8/15 epoch 32/40 batch
+# 8/15 epoch 33/40 batch
+# 8/15 epoch 34/40 batch
+# 8/15 epoch 35/40 batch
+# 8/15 epoch 36/40 batch
+# 8/15 epoch 37/40 batch
+# 8/15 epoch 38/40 batch
+# 8/15 epoch 39/40 batch
+stream1 average loss: 17.35088183283806
+stream2 average loss: 0.005884240695741028
+# 9/15 epoch 0/40 batch
+# 9/15 epoch 1/40 batch
+# 9/15 epoch 2/40 batch
+# 9/15 epoch 3/40 batch
+# 9/15 epoch 4/40 batch
+# 9/15 epoch 5/40 batch
+# 9/15 epoch 6/40 batch
+# 9/15 epoch 7/40 batch
+# 9/15 epoch 8/40 batch
+# 9/15 epoch 9/40 batch
+# 9/15 epoch 10/40 batch
+# 9/15 epoch 11/40 batch
+# 9/15 epoch 12/40 batch
+# 9/15 epoch 13/40 batch
+# 9/15 epoch 14/40 batch
+# 9/15 epoch 15/40 batch
+# 9/15 epoch 16/40 batch
+# 9/15 epoch 17/40 batch
+# 9/15 epoch 18/40 batch
+# 9/15 epoch 19/40 batch
+# 9/15 epoch 20/40 batch
+# 9/15 epoch 21/40 batch
+# 9/15 epoch 22/40 batch
+# 9/15 epoch 23/40 batch
+# 9/15 epoch 24/40 batch
+# 9/15 epoch 25/40 batch
+# 9/15 epoch 26/40 batch
+# 9/15 epoch 27/40 batch
+# 9/15 epoch 28/40 batch
+# 9/15 epoch 29/40 batch
+# 9/15 epoch 30/40 batch
+# 9/15 epoch 31/40 batch
+# 9/15 epoch 32/40 batch
+# 9/15 epoch 33/40 batch
+# 9/15 epoch 34/40 batch
+# 9/15 epoch 35/40 batch
+# 9/15 epoch 36/40 batch
+# 9/15 epoch 37/40 batch
+# 9/15 epoch 38/40 batch
+# 9/15 epoch 39/40 batch
+stream1 average loss: 17.368910443782806
+stream2 average loss: 0.005884119565598667
+# 10/15 epoch 0/40 batch
+# 10/15 epoch 1/40 batch
+# 10/15 epoch 2/40 batch
+# 10/15 epoch 3/40 batch
+# 10/15 epoch 4/40 batch
+# 10/15 epoch 5/40 batch
+# 10/15 epoch 6/40 batch
+# 10/15 epoch 7/40 batch
+# 10/15 epoch 8/40 batch
+# 10/15 epoch 9/40 batch
+# 10/15 epoch 10/40 batch
+# 10/15 epoch 11/40 batch
+# 10/15 epoch 12/40 batch
+# 10/15 epoch 13/40 batch
+# 10/15 epoch 14/40 batch
+# 10/15 epoch 15/40 batch
+# 10/15 epoch 16/40 batch
+# 10/15 epoch 17/40 batch
+# 10/15 epoch 18/40 batch
+# 10/15 epoch 19/40 batch
+# 10/15 epoch 20/40 batch
+# 10/15 epoch 21/40 batch
+# 10/15 epoch 22/40 batch
+# 10/15 epoch 23/40 batch
+# 10/15 epoch 24/40 batch
+# 10/15 epoch 25/40 batch
+# 10/15 epoch 26/40 batch
+# 10/15 epoch 27/40 batch
+# 10/15 epoch 28/40 batch
+# 10/15 epoch 29/40 batch
+# 10/15 epoch 30/40 batch
+# 10/15 epoch 31/40 batch
+# 10/15 epoch 32/40 batch
+# 10/15 epoch 33/40 batch
+# 10/15 epoch 34/40 batch
+# 10/15 epoch 35/40 batch
+# 10/15 epoch 36/40 batch
+# 10/15 epoch 37/40 batch
+# 10/15 epoch 38/40 batch
+# 10/15 epoch 39/40 batch
+stream1 average loss: 19.216501069068908
+stream2 average loss: 0.005883988365530968
+model saved at ../resources/trained_models/Ours/ARGO
+# 11/15 epoch 0/40 batch
+# 11/15 epoch 1/40 batch
+# 11/15 epoch 2/40 batch
+# 11/15 epoch 3/40 batch
+# 11/15 epoch 4/40 batch
+# 11/15 epoch 5/40 batch
+# 11/15 epoch 6/40 batch
+# 11/15 epoch 7/40 batch
+# 11/15 epoch 8/40 batch
+# 11/15 epoch 9/40 batch
+# 11/15 epoch 10/40 batch
+# 11/15 epoch 11/40 batch
+# 11/15 epoch 12/40 batch
+# 11/15 epoch 13/40 batch
+# 11/15 epoch 14/40 batch
+# 11/15 epoch 15/40 batch
+# 11/15 epoch 16/40 batch
+# 11/15 epoch 17/40 batch
+# 11/15 epoch 18/40 batch
+# 11/15 epoch 19/40 batch
+# 11/15 epoch 20/40 batch
+# 11/15 epoch 21/40 batch
+# 11/15 epoch 22/40 batch
+# 11/15 epoch 23/40 batch
+# 11/15 epoch 24/40 batch
+# 11/15 epoch 25/40 batch
+# 11/15 epoch 26/40 batch
+# 11/15 epoch 27/40 batch
+# 11/15 epoch 28/40 batch
+# 11/15 epoch 29/40 batch
+# 11/15 epoch 30/40 batch
+# 11/15 epoch 31/40 batch
+# 11/15 epoch 32/40 batch
+# 11/15 epoch 33/40 batch
+# 11/15 epoch 34/40 batch
+# 11/15 epoch 35/40 batch
+# 11/15 epoch 36/40 batch
+# 11/15 epoch 37/40 batch
+# 11/15 epoch 38/40 batch
+# 11/15 epoch 39/40 batch
+stream1 average loss: 18.70297023653984
+stream2 average loss: 0.005884016980417073
+# 12/15 epoch 0/40 batch
+# 12/15 epoch 1/40 batch
+# 12/15 epoch 2/40 batch
+# 12/15 epoch 3/40 batch
+# 12/15 epoch 4/40 batch
+# 12/15 epoch 5/40 batch
+# 12/15 epoch 6/40 batch
+# 12/15 epoch 7/40 batch
+# 12/15 epoch 8/40 batch
+# 12/15 epoch 9/40 batch
+# 12/15 epoch 10/40 batch
+# 12/15 epoch 11/40 batch
+# 12/15 epoch 12/40 batch
+# 12/15 epoch 13/40 batch
+# 12/15 epoch 14/40 batch
+# 12/15 epoch 15/40 batch
+# 12/15 epoch 16/40 batch
+# 12/15 epoch 17/40 batch
+# 12/15 epoch 18/40 batch
+# 12/15 epoch 19/40 batch
+# 12/15 epoch 20/40 batch
+# 12/15 epoch 21/40 batch
+# 12/15 epoch 22/40 batch
+# 12/15 epoch 23/40 batch
+# 12/15 epoch 24/40 batch
+# 12/15 epoch 25/40 batch
+# 12/15 epoch 26/40 batch
+# 12/15 epoch 27/40 batch
+# 12/15 epoch 28/40 batch
+# 12/15 epoch 29/40 batch
+# 12/15 epoch 30/40 batch
+# 12/15 epoch 31/40 batch
+# 12/15 epoch 32/40 batch
+# 12/15 epoch 33/40 batch
+# 12/15 epoch 34/40 batch
+# 12/15 epoch 35/40 batch
+# 12/15 epoch 36/40 batch
+# 12/15 epoch 37/40 batch
+# 12/15 epoch 38/40 batch
+# 12/15 epoch 39/40 batch
+stream1 average loss: 18.136723232269286
+stream2 average loss: 0.00588374889921397
+# 13/15 epoch 0/40 batch
+# 13/15 epoch 1/40 batch
+# 13/15 epoch 2/40 batch
+# 13/15 epoch 3/40 batch
+# 13/15 epoch 4/40 batch
+# 13/15 epoch 5/40 batch
+# 13/15 epoch 6/40 batch
+# 13/15 epoch 7/40 batch
+# 13/15 epoch 8/40 batch
+# 13/15 epoch 9/40 batch
+# 13/15 epoch 10/40 batch
+# 13/15 epoch 11/40 batch
+# 13/15 epoch 12/40 batch
+# 13/15 epoch 13/40 batch
+# 13/15 epoch 14/40 batch
+# 13/15 epoch 15/40 batch
+# 13/15 epoch 16/40 batch
+# 13/15 epoch 17/40 batch
+# 13/15 epoch 18/40 batch
+# 13/15 epoch 19/40 batch
+# 13/15 epoch 20/40 batch
+# 13/15 epoch 21/40 batch
+# 13/15 epoch 22/40 batch
+# 13/15 epoch 23/40 batch
+# 13/15 epoch 24/40 batch
+# 13/15 epoch 25/40 batch
+# 13/15 epoch 26/40 batch
+# 13/15 epoch 27/40 batch
+# 13/15 epoch 28/40 batch
+# 13/15 epoch 29/40 batch
+# 13/15 epoch 30/40 batch
+# 13/15 epoch 31/40 batch
+# 13/15 epoch 32/40 batch
+# 13/15 epoch 33/40 batch
+# 13/15 epoch 34/40 batch
+# 13/15 epoch 35/40 batch
+# 13/15 epoch 36/40 batch
+# 13/15 epoch 37/40 batch
+# 13/15 epoch 38/40 batch
+# 13/15 epoch 39/40 batch
+stream1 average loss: 18.179270613193513
+stream2 average loss: 0.005883703369181603
+# 14/15 epoch 0/40 batch
+# 14/15 epoch 1/40 batch
+# 14/15 epoch 2/40 batch
+# 14/15 epoch 3/40 batch
+# 14/15 epoch 4/40 batch
+# 14/15 epoch 5/40 batch
+# 14/15 epoch 6/40 batch
+# 14/15 epoch 7/40 batch
+# 14/15 epoch 8/40 batch
+# 14/15 epoch 9/40 batch
+# 14/15 epoch 10/40 batch
+# 14/15 epoch 11/40 batch
+# 14/15 epoch 12/40 batch
+# 14/15 epoch 13/40 batch
+# 14/15 epoch 14/40 batch
+# 14/15 epoch 15/40 batch
+# 14/15 epoch 16/40 batch
+# 14/15 epoch 17/40 batch
+# 14/15 epoch 18/40 batch
+# 14/15 epoch 19/40 batch
+# 14/15 epoch 20/40 batch
+# 14/15 epoch 21/40 batch
+# 14/15 epoch 22/40 batch
+# 14/15 epoch 23/40 batch
+# 14/15 epoch 24/40 batch
+# 14/15 epoch 25/40 batch
+# 14/15 epoch 26/40 batch
+# 14/15 epoch 27/40 batch
+# 14/15 epoch 28/40 batch
+# 14/15 epoch 29/40 batch
+# 14/15 epoch 30/40 batch
+# 14/15 epoch 31/40 batch
+# 14/15 epoch 32/40 batch
+# 14/15 epoch 33/40 batch
+# 14/15 epoch 34/40 batch
+# 14/15 epoch 35/40 batch
+# 14/15 epoch 36/40 batch
+# 14/15 epoch 37/40 batch
+# 14/15 epoch 38/40 batch
+# 14/15 epoch 39/40 batch
+stream1 average loss: 17.70085788965225
+stream2 average loss: 0.005883727129548788
+computing accuracy...
+0/15 in computing accuracy...
+2/15 in computing accuracy...
+4/15 in computing accuracy...
+6/15 in computing accuracy...
+8/15 in computing accuracy...
+10/15 in computing accuracy...
+12/15 in computing accuracy...
+14/15 in computing accuracy...
+ADE: [1.75286282 1.76379103 1.86907543 1.8954968  1.91897081 1.94995942
+ 1.94524555 1.97292831 1.95551544 1.98584251 1.96167545 1.97177126
+ 1.98892034 2.0007524  1.98658474 1.9991735  2.00218163 1.97216897
+ 1.99025436 1.98531371 1.96523227 2.00862726 1.99210604 2.00047354
+ 2.0032828  1.9976758  1.98929259 1.96595449 1.97065023 2.00195932]
+ADE: 1.958791293033355 FDE: 2.001959323136978
+model saved at ../resources/trained_models/Ours/ARGO
+start evaluating ARGO1stS1new...
+Calling eval...
+computing accuracy...
+0/10 in computing accuracy...
+2/10 in computing accuracy...
+4/10 in computing accuracy...
+6/10 in computing accuracy...
+8/10 in computing accuracy...
+ADE: [1.76067697 1.82948478 1.86377637 1.88720544 1.93914945 1.91175772
+ 1.91425087 1.92072114 1.94933531 1.97849926 1.98920804 1.9831843
+ 2.00529515 1.9679096  2.02095312 1.97395443 1.96452693 1.94433968
+ 2.00958728 2.05102154 2.00934809 1.98193662 2.02227267 2.04026716
+ 1.99839567 2.01205874 1.99999502 1.98913486 1.99973676 2.01178512]
+ADE: 1.964325603955906 FDE: 2.011785116844986
+
+Process finished with exit code 0
