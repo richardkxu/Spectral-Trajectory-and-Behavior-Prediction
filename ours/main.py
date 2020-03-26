@@ -9,17 +9,17 @@ from def_train_eval import *
 import pickle
 
 
-# DATA = 'APOL'
-# train_seq_len = 6
-# pred_seq_len = 10
+DATA = 'APOL'
+train_seq_len = 6
+pred_seq_len = 10
 
 # DATA = 'LYFT'
 # train_seq_len = 20
 # pred_seq_len = 30
 
-DATA = 'ARGO'
-train_seq_len = 20
-pred_seq_len = 30
+# DATA = 'ARGO'
+# train_seq_len = 20
+# pred_seq_len = 30
 
 # change according to yr device
 device = torch.device("cuda:0")
@@ -37,6 +37,12 @@ save_per_epochs = 5
 
 
 if __name__ == "__main__":
+    print("Dataset: {}".format(DATA))
+    print("Input seq length: {} | Pred seq length: {}".format(train_seq_len, pred_seq_len))
+    if s2:
+        print("Using Two Stream Model")
+    else:
+        print("Using One Stream Model")
 
     if TRAIN:
         # load stream1 preprocessed data
@@ -80,4 +86,5 @@ if __name__ == "__main__":
         f1.close ()
         g1.close ()
 
+        # this eval code only takes traj input, not traffic graph input
         eval(10, tr_seq_1, pred_seq_1, DATA, SUFIX)

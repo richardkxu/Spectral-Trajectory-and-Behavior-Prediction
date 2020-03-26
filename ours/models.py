@@ -9,6 +9,7 @@ from torch.autograd import Variable
 # device = torch.device("cuda:1")
 device = torch.device("cuda:0")
 
+
 class GraphConvolution ( nn.Module ):
     """
     Simple GCN layer, similar to https://arxiv.org/abs/1609.02907

@@ -48,7 +48,6 @@ def load_batch(index, size, seq_ID, train_sequence_stream1, pred_sequence_stream
         stream2_train_batch = train_sequence_stream2[start_index:stop_index]
         eigs = train_eig_seq[start_index:stop_index]
         single_batch = [stream1_train_batch, stream2_train_batch, eigs]
-
     elif seq_ID == 'pred':
         stream1_pred_batch = pred_sequence_stream_1[start_index:stop_index]
         stream2_pred_batch = pred_sequence_stream2[start_index:stop_index]
@@ -88,9 +87,9 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
     train_eig_raw = train_eig
     pred_eig_raw = val_eig
     # Initialize encoder, decoders for both streams
-    batch = load_batch ( 0 , BATCH_SIZE , 'pred' , train_raw , pred_raw , train2_raw , pred2_raw, train_eig_raw, pred_eig_raw)
-    batch , _, _= batch
-    batch_in_form = np.asarray ( [ batch[ i ][ 'sequence' ] for i in range ( BATCH_SIZE ) ] )
+    # here we load the 1st batch just to get the shape
+    stream1_batch, stream2_batch, eigen_batch = load_batch ( 0 , BATCH_SIZE , 'pred' , train_raw , pred_raw , train2_raw , pred2_raw, train_eig_raw, pred_eig_raw)
+    batch_in_form = np.asarray ( [ stream1_batch[ i ][ 'sequence' ] for i in range ( BATCH_SIZE ) ] )
     batch_in_form = torch.Tensor ( batch_in_form )
     [ batch_size , step_size , fea_size ] = np.shape(batch_in_form)
     input_dim = fea_size
@@ -103,21 +102,9 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
     encoder_stream1_optimizer = optim.RMSprop(encoder_stream1.parameters(), lr=learning_rate)
     decoder_stream1_optimizer = optim.RMSprop(decoder_stream1.parameters(), lr=learning_rate)
 
-    # # loading pre-trained weights, comment out if you want to train
-    # print("loading pretrained stream1 encoder from: {}...".format(encoder1loc))
-    # print("loading pretrained stream1 decoder from: {}...".format(decoder1loc))
-    # # the author save the whole model, which is bounded to cuda:1
-    # # remap to the current device on yr machine
-    # encoder_stream1.load_state_dict(torch.load(encoder1loc, map_location=device))
-    # encoder_stream1.eval()
-    # decoder_stream1.load_state_dict(torch.load(decoder1loc, map_location=device))
-    # decoder_stream1.eval()
-
     # stream2
     if s2 is True:
-        batch = load_batch ( 0 , BATCH_SIZE , 'pred' , train_raw , pred_raw , train2_raw , pred2_raw, train_eig_raw, pred_eig_raw )
-        _ , _, batch = batch
-        batch = np.asarray([batch[i] for i in range(len(batch))])
+        batch = np.asarray([eigen_batch[i] for i in range(len(eigen_batch))])
         batch_in_form = torch.Tensor(batch)
         [ batch_size , step_size , fea_size ] = batch_in_form.size()
         input_dim = fea_size
@@ -145,7 +132,6 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
             testbatch, test_middle, testbatch2 = testbatch_both
             testbatch_in_form = np.asarray([testbatch[i]['sequence'] for i in range(BATCH_SIZE)])
             testbatch_in_form =  torch.Tensor(testbatch_in_form ).to(device)
-            # for data in train_dataloader:
 
             input_stream1_tensor = trainbatch_in_form
             batch_agent_ids = [trainbatch[i]['agent_ID'] for i in range(BATCH_SIZE)]
@@ -163,7 +149,6 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
 
             loss_stream1 = train_stream1(input_stream1_tensor, target_stream1_tensor, encoder_stream1, decoder_stream1, encoder_stream1_optimizer, decoder_stream1_optimizer, output_stream2_decoder, batch_agent_ids, test_middle, s2)
             print_loss_total_stream1 += loss_stream1
-                # print(loss_stream1)
 
             # print_loss_avg_stream1 = print_loss_total_stream1 / print_every
             # print_loss_total_stream1 = 0
@@ -200,21 +185,13 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, train2_dataloader,v
 
 def eval(epochs, tr_seq_1, pred_seq_1, data, sufix, learning_rate=1e-3, loc=MODEL_LOC):
     print("Calling eval...")
-    encoder_stream1 = None
-    decoder_stream1 = None
-    encoder_stream2 = None
-    decoder_stream2 = None
-
     encoder1loc = os.path.join(loc.format(data), 'encoder_stream1_{}{}.pt'.format(data, sufix))
     decoder1loc = os.path.join(loc.format(data), 'decoder_stream1_{}{}.pt'.format(data, sufix))
-    encoder2loc = os.path.join(loc.format(data), 'encoder_stream2_{}{}.pt'.format(data, sufix))
-    decoder2loc = os.path.join(loc.format(data), 'decoder_stream2_{}{}.pt'.format(data, sufix))
 
     train_raw = tr_seq_1
     pred_raw = pred_seq_1
-#    train2_raw = tr_seq_2
-#    pred2_raw = pred_seq_2
     # Initialize encoder, decoders for both streams
+    # here we load the 1st batch just to get the shape
     batch = load_batch ( 0 , BATCH_SIZE , 'pred' , train_raw , pred_raw , [], [], [], [] )
     batch , _, _ = batch
     batch_in_form = np.asarray ( [ batch[ i ][ 'sequence' ] for i in range ( BATCH_SIZE ) ] )
@@ -226,8 +203,9 @@ def eval(epochs, tr_seq_1, pred_seq_1, data, sufix, learning_rate=1e-3, loc=MODE
 
     encoder_stream1 = Encoder ( input_dim , hidden_dim , output_dim ).to ( device )
     decoder_stream1 = Decoder ( 's1' , input_dim , hidden_dim , output_dim, batch_size, step_size ).to ( device )
-    encoder_stream1_optimizer = optim.RMSprop(encoder_stream1.parameters(), lr=learning_rate)
-    decoder_stream1_optimizer = optim.RMSprop(decoder_stream1.parameters(), lr=learning_rate)
+
+    # the author save the whole model, which is bounded to cuda:1
+    # remap to the current device on yr machine
     encoder_stream1.load_state_dict(torch.load(encoder1loc, map_location=device))
     encoder_stream1.eval()
     decoder_stream1.load_state_dict(torch.load(decoder1loc, map_location=device))
@@ -245,7 +223,6 @@ def train_stream1(input_tensor, target_tensor, encoder, decoder, encoder_optimiz
     Hidden_State , _ = encoder.loop(input_tensor)
     _, _, mu_1, mu_2, log_sigma_1, log_sigma_2, rho = decoder.loop(Hidden_State)
 
-
     encoder_optimizer.zero_grad()
     decoder_optimizer.zero_grad()
     if s2 == True:
@@ -254,8 +231,6 @@ def train_stream1(input_tensor, target_tensor, encoder, decoder, encoder_optimiz
         loss = -log_likelihood(mu_1, mu_2, log_sigma_1, log_sigma_2, rho, target_tensor, cluster_centers)
     else:
         loss = -log_likelihood(mu_1, mu_2, log_sigma_1, log_sigma_2, rho, target_tensor, None)
-
-
 
     loss = loss if loss >0 else -1*loss
     loss.backward()
