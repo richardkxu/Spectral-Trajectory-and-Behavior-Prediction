@@ -117,19 +117,20 @@ class Encoder ( nn.Module ):
         return Variable ( torch.Tensor ( A ).cuda () )
 
     def forward ( self , input , Hidden_State , Cell_State ):
-        graph = False
+        # Not using GCN in the paper
+        # graph = False
+        #
+        # if graph is True:
+        #     gcn_feat = [ ]
+        #     gcn_model = GCN ( nfeat=1 , nhid=16 , nclass=1 , dropout=0.5 )
+        #     for j in range ( input.shape[ 0 ] ):
+        #         features = input[ j , : ]
+        #         gcn_feat.append ( gcn_model ( torch.unsqueeze ( features , dim=1 ) ,
+        #                                       self.compute_A ( features ) ).cpu ().detach ().numpy () )
+        #
+        #     input = Parameter ( torch.FloatTensor ( np.asarray ( gcn_feat ) ).cuda () )
+        #     input = torch.squeeze ( input )
 
-        if graph is True:
-            gcn_feat = [ ]
-            gcn_model = GCN ( nfeat=1 , nhid=16 , nclass=1 , dropout=0.5 )
-            for j in range ( input.shape[ 0 ] ):
-                features = input[ j , : ]
-                gcn_feat.append ( gcn_model ( torch.unsqueeze ( features , dim=1 ) ,
-                                              self.compute_A ( features ) ).cpu ().detach ().numpy () )
-
-            input = Parameter ( torch.FloatTensor ( np.asarray ( gcn_feat ) ).cuda () )
-            input = torch.squeeze ( input )
-        # print(input)
         combined = torch.cat ( (input , Hidden_State) , 1 )
         f = torch.sigmoid ( self.fl ( combined ) )
         i = torch.sigmoid ( self.il ( combined ) )
@@ -179,19 +180,20 @@ class Decoder(nn.Module):
 
 
     def forward(self, input , Hidden_State , Cell_State):
-        graph = False
+        # Not using GCN in the paper
+        # graph = False
+        #
+        # if graph is True:
+        #     gcn_feat = [ ]
+        #     gcn_model = GCN ( nfeat=1 , nhid=16 , nclass=1 , dropout=0.5 )
+        #     for j in range ( input.shape[ 0 ] ):
+        #         features = input[ j , : ]
+        #         gcn_feat.append ( gcn_model ( torch.unsqueeze ( features , dim=1 ) ,
+        #                                       self.compute_A ( features ) ).cpu ().detach ().numpy () )
+        #
+        #     input = Parameter ( torch.FloatTensor ( np.asarray ( gcn_feat ) ).cuda () )
+        #     input = torch.squeeze ( input )
 
-        if graph is True:
-            gcn_feat = [ ]
-            gcn_model = GCN ( nfeat=1 , nhid=16 , nclass=1 , dropout=0.5 )
-            for j in range ( input.shape[ 0 ] ):
-                features = input[ j , : ]
-                gcn_feat.append ( gcn_model ( torch.unsqueeze ( features , dim=1 ) ,
-                                              self.compute_A ( features ) ).cpu ().detach ().numpy () )
-
-            input = Parameter ( torch.FloatTensor ( np.asarray ( gcn_feat ) ).cuda () )
-            input = torch.squeeze ( input )
-        # print(input)
         combined = torch.cat ( (input , Hidden_State) , 1 )
         f = torch.sigmoid ( self.fl ( combined ) )
         i = torch.sigmoid ( self.il ( combined ) )
