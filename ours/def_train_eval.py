@@ -217,10 +217,11 @@ def eval(epochs, tr_seq_1, pred_seq_1, data, sufix, learning_rate=1e-3, loc=MODE
 
 
 def train_stream1(input_tensor, target_tensor, encoder, decoder, encoder_optimizer, decoder_optimizer, stream2_output,batch_agent_ids, testbatch2, s2):
-
+    # target_tensor: 128, 10, 2
     target_length = target_tensor.size(0)
-
+    # input_tensor: 128, 6, 2
     Hidden_State , _ = encoder.loop(input_tensor)
+    # mu_1, mu_2: 128, 10, 1; log_sigma_1, log_sigma_2: 128, 10, 1
     _, _, mu_1, mu_2, log_sigma_1, log_sigma_2, rho = decoder.loop(Hidden_State)
 
     encoder_optimizer.zero_grad()
@@ -250,14 +251,16 @@ def save_model(encoder_stream1, decoder_stream1, encoder_stream2, decoder_stream
 
 
 def train_stream2(input_tensor, target_tensor, encoder, decoder, encoder_optimizer, decoder_optimizer):
-
+    # input_tensor: 128, 6, 1063
     Hidden_State , _ = encoder.loop(input_tensor)
+    # stream2_out: 128, 10, 1063
     stream2_out,_, _, _, _, _, _, _ = decoder.loop(Hidden_State)
 
     l = nn.MSELoss()
 
     encoder_optimizer.zero_grad()
     decoder_optimizer.zero_grad()
+    # target_tensor: 128, 10, 1063
     loss = l(stream2_out, target_tensor)
     loss.backward()
 

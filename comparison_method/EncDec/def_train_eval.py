@@ -77,7 +77,7 @@ def trainIters(n_epochs, train_dataloader, valid_dataloader, test1, test2, data,
 
         print ( '{}/{} epochs: stream1 average loss:'.format(epoch, n_epochs) , print_loss_total_stream1 / num_batches )
 
-    compute_accuracy_stream1(train_dataloader, 	valid_dataloader, encoder_stream1, decoder_stream1, n_epochs)
+    compute_accuracy_stream1(train_dataloader, valid_dataloader, encoder_stream1, decoder_stream1, n_epochs)
     save_model(encoder_stream1, decoder_stream1, data, sufix )
     compute_accuracy_stream1(test1, test2, encoder_stream1, decoder_stream1, n_epochs)
 

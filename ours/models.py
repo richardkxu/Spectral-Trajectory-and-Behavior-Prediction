@@ -194,6 +194,7 @@ class Decoder(nn.Module):
         #     input = Parameter ( torch.FloatTensor ( np.asarray ( gcn_feat ) ).cuda () )
         #     input = torch.squeeze ( input )
 
+        # input: 128, 1063; hidden: 128, 1063; combined: 128, 2126
         combined = torch.cat ( (input , Hidden_State) , 1 )
         f = torch.sigmoid ( self.fl ( combined ) )
         i = torch.sigmoid ( self.il ( combined ) )
